@@ -8,3 +8,4 @@ export const LOGIN_USER = 'login_user';
 
 //Device
 export const DEVICE_UPDATE = 'device_update';
+export const DEVICE_CREATE = 'device_create';
