@@ -1,10 +1,40 @@
+import _ from 'lodash';
 import React,{ Component } from 'react';
-import { Container, Content, Text, Header, Body, Title, Right, Left, Icon } from 'native-base';
-import { TouchableOpacity } from 'react-native';
-import { Actions } from 'react-native-router-flux'
+import { Container, Content, Header, Body, Title, Right, Left, Icon } from 'native-base';
+import { TouchableOpacity,ListView } from 'react-native';
+import { connect } from 'react-redux';
+import {devicesFetch} from "../actions";
+import { Actions } from 'react-native-router-flux';
+import ListItems from './ListItems';
 
 class DeviceList extends Component {
+    componentWillMount(){
+        this.props.devicesFetch();
+        this.createDataSource(this.props);
+    }
+
+    componentWillReceiveProps(nextProps){
+        //nextProps are the next set of props that this component
+        // will be rendered with
+        // this.props is still old props
+
+        this.createDataSource(nextProps);
+    }
+
+    createDataSource({ devices }){
+        const ds = new ListView.DataSource({
+            rowHasChanged: (r1, r2)=> r1 !== r2
+        });
+
+        this.dataSource = ds.cloneWithRows(devices);
+    }
+
+    renderRow(device){
+        return <ListItems device={device} />;
+    }
+
     render(){
+        console.log(this.props);
         return(
             <Container>
                 <Header>
@@ -22,16 +52,23 @@ class DeviceList extends Component {
                     </Right>
                 </Header>
                 <Content>
-                    <Text> Devices List</Text>
-                    <Text> Devices List</Text>
-                    <Text> Devices List</Text>
-                    <Text> Devices List</Text>
-                    <Text> Devices List</Text>
-                    <Text> Devices List</Text>
+                    <ListView
+                        enableEmptySections
+                        dataSource={this.dataSource}
+                        renderRow={this.renderRow}
+                    />
                 </Content>
             </Container>
         )
     }
 }
 
-export default DeviceList;
+const mapStateToProps = state => {
+    const devices = _.map(state.devices, (val, uid) =>{
+        return { ...val, uid };
+    });
+
+    return {devices}
+};
+
+export default connect(mapStateToProps,{devicesFetch})(DeviceList);
