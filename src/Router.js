@@ -3,6 +3,7 @@ import { Scene, Router, Actions } from 'react-native-router-flux';
 import LoginForm from './components/LoginForm';
 import DeviceList from './components/DeviceList';
 import DeviceCreate from'./components/DeviceCreate';
+import DeviceForm from './components/DeviceForm';
 
 const RouterComponent =() => {
     return(
@@ -20,6 +21,12 @@ const RouterComponent =() => {
                         hideNavBar
                     />
                     <Scene key="deviceCreate" component={DeviceCreate} title="Add Device" hideNavBar />
+                    <Scene
+                        key="deviceForm"
+                        component={DeviceForm}
+                        hideNavBar
+                        initial
+                    />
                 </Scene>
             </Scene>
         </Router>

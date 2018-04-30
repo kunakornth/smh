@@ -7,8 +7,8 @@ import { Actions } from 'react-native-router-flux'
 
 class DeviceCreate extends Component{
     onButtonPress(){
-        const { ssid, sspassword } = this.props;
-        this.props.deviceCreate({ ssid, sspassword });
+        const { name, dimmer, ssid, sspassword } = this.props;
+        this.props.deviceCreate({ name, dimmer, ssid, sspassword });
     }
     render(){
         return(
@@ -26,6 +26,13 @@ class DeviceCreate extends Component{
                 </Header>
                 <Content>
                     <Form>
+                        <Item stackedLabel>
+                            <Label>Device name</Label>
+                            <Input
+                                value={this.props.name}
+                                onChangeText={value => this.props.deviceUpdate({prop: 'name',value})}
+                            />
+                        </Item>
                         <Item stackedLabel>
                             <Label>WiFi name</Label>
                             <Input
@@ -52,8 +59,8 @@ class DeviceCreate extends Component{
 }
 
 const mapStateToProps = (state) => {
-  const { ssid, sspassword } = state.deviceForm;
-  return { ssid, sspassword };
+  const { name, dimmer, ssid, sspassword } = state.deviceForm;
+  return { name, dimmer, ssid, sspassword };
 };
 
 export default connect(mapStateToProps,{ deviceUpdate,deviceCreate })(DeviceCreate);

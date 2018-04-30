@@ -4,8 +4,11 @@ import {
 } from "../actions/types";
 
 const INITIAL_STATE = {
+    name: '',
     ssid: '',
     sspassword:'',
+    dimmer:0,
+
 };
 
 export default (state = INITIAL_STATE, action) => {
