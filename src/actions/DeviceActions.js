@@ -36,10 +36,3 @@ export const devicesFetch = () => {
     };
 };
 
-export const deviceDimmer = ({ dimmer, uid })=>{
-    return () => {
-        firebase.database().ref('deviceId/${uid}')
-            .set({dimmer})
-            .then(() => console.log('save'))
-    }
-};

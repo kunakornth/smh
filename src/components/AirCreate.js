@@ -1,50 +1,43 @@
-import React, { Component } from 'react';
-import {Container, Content, Text, Header, Left, Button, Icon, Title, Right, Body, Form, Item, Label, Input } from 'native-base';
-import {Actions} from "react-native-router-flux";
+import React,{Component} from 'react';
+import { connect} from 'react-redux';
+import { airUpdate, airCreate } from "../actions";
+import { Container, Content, Form, Item, Label, Text, Header, Left, Body, Title, Right, Icon, Input, Button } from 'native-base';
 import { TouchableOpacity } from 'react-native';
-import { connect } from 'react-redux';
-import { deviceUpdate } from "../actions";
-import { StatusBar } from 'react-native'
+import { Actions } from 'react-native-router-flux'
 
-
-class DeviceForm extends Component{
+class AirCreate extends Component{
     onButtonPress(){
-
+        const { name, airStatus, ssid, sspassword } = this.props;
+        this.props.airCreate({ name, airStatus, ssid, sspassword });
     }
-
     render(){
-        return (
+        return(
             <Container>
-                <StatusBar
-                    backgroundColor={'transparent'}
-                    barStyle="light-content"
-                />
                 <Header>
-
                     <Left>
                         <TouchableOpacity onPress={() => Actions.pop()}>
                             <Icon style={{fontSize: 35, color: 'white'}} name='arrow-back' />
                         </TouchableOpacity>
                     </Left>
                     <Body>
-                    <Title>Add Devices</Title>
+                    <Title>Add Air-Conditioner</Title>
                     </Body>
                     <Right/>
                 </Header>
                 <Content>
                     <Form>
                         <Item stackedLabel>
-                            <Label>Device name</Label>
+                            <Label>name</Label>
                             <Input
                                 value={this.props.name}
-                                onChangeText={value => this.props.deviceUpdate({prop: 'name',value})}
+                                onChangeText={value => this.props.airUpdate({prop: 'name',value})}
                             />
                         </Item>
                         <Item stackedLabel>
                             <Label>WiFi name</Label>
                             <Input
                                 value={this.props.ssid}
-                                onChangeText={value => this.props.deviceUpdate({prop: 'ssid',value})}
+                                onChangeText={value => this.props.airUpdate({prop: 'ssid',value})}
                             />
                         </Item>
                         <Item stackedLabel last>
@@ -52,7 +45,7 @@ class DeviceForm extends Component{
                             <Input
                                 secureTextEntry
                                 value={this.props.sspassword}
-                                onChangeText={value => this.props.deviceUpdate({prop: 'sspassword',value})}
+                                onChangeText={value => this.props.airUpdate({prop: 'sspassword',value})}
                             />
                         </Item>
                         <Button full light style={{marginTop:20}} onPress={this.onButtonPress.bind(this)} >
@@ -60,17 +53,14 @@ class DeviceForm extends Component{
                         </Button>
                     </Form>
                 </Content>
-                <Content style={{backgroundColor:'red'}}/>
-                <Content style={{backgroundColor:'green'}}/>
             </Container>
         );
     }
 }
 
-const mapStateToProps =(state)=>{
-    const { name, ssid, sspassword} =state.deviceForm;
-
-    return { name, ssid,sspassword};
+const mapStateToProps = (state) => {
+    const { name, airStatus, ssid, sspassword } = state.airForm;
+    return { name, airStatus, ssid, sspassword };
 };
 
-export default connect(mapStateToProps,{deviceUpdate})(DeviceForm);
+export default connect(mapStateToProps,{ airUpdate,airCreate })(AirCreate);

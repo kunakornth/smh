@@ -10,3 +10,9 @@ export const LOGIN_USER = 'login_user';
 export const DEVICE_UPDATE = 'device_update';
 export const DEVICE_CREATE = 'device_create';
 export const DEVICES_FETCH_SUCCESS = 'devices_fetch_success';
+
+
+//Air-Conditioner
+export const AIR_UPDATE = 'air_update';
+export const AIR_CREATE = 'air_create';
+export const AIRS_FETCH_SUCCESS = 'airs_fetch_success';

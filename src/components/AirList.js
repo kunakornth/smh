@@ -1,25 +1,15 @@
 import _ from 'lodash';
 import React,{ Component } from 'react';
 import { Container, Content, Header, Body, Title, Right, Left, Icon } from 'native-base';
-import { TouchableOpacity,ListView,YellowBox } from 'react-native';
+import { TouchableOpacity,ListView } from 'react-native';
 import { connect } from 'react-redux';
-import {devicesFetch} from "../actions";
+import {airsFetch} from "../actions";
 import { Actions } from 'react-native-router-flux';
-import ListItems from './ListItems';
+import ListItemAir from './ListItemAir';
 
-
-YellowBox.ignoreWarnings(['Setting a timer']);
-const _console = _.clone(console);
-console.warn = message => {
-    if (message.indexOf('Setting a timer') <= -1) {
-        _console.warn(message);
-    }
-};
-
-
-class DeviceList extends Component {
+class AirList extends Component {
     componentWillMount(){
-        this.props.devicesFetch();
+        this.props.airsFetch();
         this.createDataSource(this.props);
     }
 
@@ -31,16 +21,16 @@ class DeviceList extends Component {
         this.createDataSource(nextProps);
     }
 
-    createDataSource({ devices }){
+    createDataSource({ airs }){
         const ds = new ListView.DataSource({
             rowHasChanged: (r1, r2)=> r1 !== r2
         });
 
-        this.dataSource = ds.cloneWithRows(devices);
+        this.dataSource = ds.cloneWithRows(airs);
     }
 
-    renderRow(device){
-        return <ListItems device={device} />;
+    renderRow(air){
+        return <ListItemAir air={air} />;
     }
 
     render(){
@@ -50,13 +40,13 @@ class DeviceList extends Component {
                 <Header>
                     <Left/>
                     <Body>
-                        <Title>
-                            Devices
-                        </Title>
+                    <Title>
+                        Air-Conditioner
+                    </Title>
 
                     </Body>
                     <Right>
-                        <TouchableOpacity onPress={() => Actions.deviceCreate()}>
+                        <TouchableOpacity onPress={() => Actions.airCreate()}>
                             <Icon style={{fontSize: 35, color: 'white'}} name='md-add' />
                         </TouchableOpacity>
                     </Right>
@@ -74,11 +64,11 @@ class DeviceList extends Component {
 }
 
 const mapStateToProps = state => {
-    const devices = _.map(state.devices, (val, uid) =>{
+    const airs = _.map(state.airs, (val, uid) =>{
         return { ...val, uid };
     });
 
-    return {devices}
+    return {airs}
 };
 
-export default connect(mapStateToProps,{devicesFetch})(DeviceList);
+export default connect(mapStateToProps,{airsFetch})(AirList);
