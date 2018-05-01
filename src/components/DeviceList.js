@@ -7,7 +7,6 @@ import {devicesFetch} from "../actions";
 import { Actions } from 'react-native-router-flux';
 import ListItems from './ListItems';
 
-
 YellowBox.ignoreWarnings(['Setting a timer']);
 const _console = _.clone(console);
 console.warn = message => {

@@ -17,12 +17,12 @@ class App extends Component {
 
     componentWillMount(){
         firebase.initializeApp({
-            apiKey: "AIzaSyDE0xNvq3ftP5GN7QufGk3tssq2bJOi3DY",
-            authDomain: "eiei-a776e.firebaseapp.com",
-            databaseURL: "https://eiei-a776e.firebaseio.com",
-            projectId: "eiei-a776e",
-            storageBucket: "eiei-a776e.appspot.com",
-            messagingSenderId: "944318312158"
+            apiKey: "AIzaSyCTkrmLf5Vlo42b0UatXJd56Nm5I0GB3-4",
+            authDomain: "crisis-c5907.firebaseapp.com",
+            databaseURL: "https://crisis-c5907.firebaseio.com",
+            projectId: "crisis-c5907",
+            storageBucket: "crisis-c5907.appspot.com",
+            messagingSenderId: "891674945825"
         });
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {

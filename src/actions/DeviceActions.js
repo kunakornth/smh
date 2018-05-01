@@ -14,11 +14,11 @@ export const deviceUpdate =({ prop, value })=>{
     };
 };
 
-export const deviceCreate =( {name, dimmer, ssid, sspassword} )=>{
+export const deviceCreate =( {name, dimmer, ssid, sspassword ,Id} )=>{
 
     return(dispatch)=> {
-        firebase.database().ref('deviceId')
-            .push({name,dimmer,ssid, sspassword})
+        firebase.database().ref('deviceId/'+Id)
+            .set({name,dimmer,ssid, sspassword,Id})
             .then(() => {
                 dispatch({ type: DEVICE_CREATE});
                 Actions.pop({type: 'reset'});
@@ -35,4 +35,3 @@ export const devicesFetch = () => {
             });
     };
 };
-

@@ -8,6 +8,7 @@ const INITIAL_STATE = {
     ssid: '',
     sspassword:'',
     dimmer:0,
+    Id:'',
 
 };
 

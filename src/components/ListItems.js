@@ -9,15 +9,17 @@ import firebase from 'firebase';
 class ListItems extends Component{
 
     onRowPress(){
-        Actions.deviceCreate({device:this.props.device});
+        Actions.deviceDetail({device:this.props.device});
     }
     checkButton(){
         const { dimmer } = this.props.device;
         if (dimmer == 0){
             return (
-                <TouchableOpacity onPress={this.onButtonPress.bind(this)} style={{flex:0.5,justifyContent: 'center',}}>
-                    <Icon style={{fontSize: 35, color: '#FF0000'}} name='power' />
-                </TouchableOpacity>
+                <View style={{flex:0.5,justifyContent: 'center',}}>
+                    <TouchableOpacity onPress={this.onButtonPress.bind(this)} >
+                        <Icon style={{fontSize: 35, color: '#FF0000'}} name='power' />
+                    </TouchableOpacity>
+                </View>
             );
         }
         else{
