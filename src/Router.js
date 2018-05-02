@@ -24,11 +24,14 @@ const RouterComponent =() => {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <Scene key="deviceForm" component={DeviceForm} hideNavBar/>
                 <Scene key="timerScreen" component={TimerScreen} title="DeviceDetail" hideNavBar  />
                 <Scene key="deviceDetail" component={DeviceDetail} title="DeviceDetail" hideNavBar  />
                 <Scene key="tabbar" tabs tabBarPosition={'bottom'} iconName="alarm" tabStyle={styles.tabStyle} initial >
 =======
+=======
+>>>>>>> parent of 8da2c9c... Change Database
 =======
 >>>>>>> parent of 8da2c9c... Change Database
 =======
