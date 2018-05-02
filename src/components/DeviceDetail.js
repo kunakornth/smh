@@ -5,11 +5,14 @@ import {Actions} from "react-native-router-flux";
 
 class DeviceDetail extends Component{
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     onRowPress(){
         Actions.timerScreen({device:this.props.device});
     }
 
+=======
+>>>>>>> parent of 8da2c9c... Change Database
 =======
 >>>>>>> parent of 8da2c9c... Change Database
     render(){
@@ -24,6 +27,7 @@ class DeviceDetail extends Component{
                    <Body/>
                    <Right/>
                </Header>
+<<<<<<< HEAD
 <<<<<<< HEAD
                 <View style={{flex:1 ,alignItems: 'center'}}>
                     <Thumbnail style={{margin:15}} large source= {require('../../public/asset/icon/smart-plug.png')}/>
@@ -53,6 +57,8 @@ class DeviceDetail extends Component{
                 <View style={{flex:0.1}}/>
 
 =======
+=======
+>>>>>>> parent of 8da2c9c... Change Database
                 <Content>
                     <Form>
                         <Item stackedLabel style={{backgroundColor:'red'}}>
@@ -63,6 +69,9 @@ class DeviceDetail extends Component{
                         </Item>
                     </Form>
                 </Content>
+<<<<<<< HEAD
+>>>>>>> parent of 8da2c9c... Change Database
+=======
 >>>>>>> parent of 8da2c9c... Change Database
             </Container>
         );
