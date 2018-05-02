@@ -22,9 +22,9 @@ const RouterComponent =() => {
                 </Scene>
                 <Scene key="deviceCreate" component={DeviceCreate} title="Add Device" hideNavBar  />
                 <Scene key="deviceForm" component={DeviceForm} hideNavBar/>
-                <Scene key="timerScreen" component={TimerScreen} title="DeviceDetail" hideNavBar initial />
+                <Scene key="timerScreen" component={TimerScreen} title="DeviceDetail" hideNavBar  />
                 <Scene key="deviceDetail" component={DeviceDetail} title="DeviceDetail" hideNavBar  />
-                <Scene key="tabbar" tabs tabBarPosition={'bottom'} iconName="alarm" tabStyle={styles.tabStyle}  >
+                <Scene key="tabbar" tabs tabBarPosition={'bottom'} iconName="alarm" tabStyle={styles.tabStyle} initial >
                     <Scene key="devices" title="Devices">
                         <Scene
                             key="deviceList"

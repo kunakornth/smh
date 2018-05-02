@@ -6,6 +6,9 @@ import firebase from 'firebase';
 
 class DeviceDetail extends Component{
 
+    onRowPress(){
+        Actions.timerScreen({device:this.props.device});
+    }
 
     render(){
         const { name} = this.props.device;
@@ -36,7 +39,7 @@ class DeviceDetail extends Component{
                     <Text style={{margin:15}}>Time</Text>
                 </View>
                 <View style={{flex:0.5 ,flexDirection: 'row',}}>
-                    <TouchableOpacity style={{flex:1,justifyContent: 'center',alignItems: 'center',borderRightWidth:1}}>
+                    <TouchableOpacity onPress={this.onRowPress.bind(this)} style={{flex:1,justifyContent: 'center',alignItems: 'center',borderRightWidth:1}}>
                         <Icon  name="md-time"/>
                         <Text style={{margin:5}}>Timer</Text>
                     </TouchableOpacity>
