@@ -7,9 +7,9 @@ import DeviceForm from './components/DeviceForm';
 import AirCreate from './components/AirCreate';
 import AirList from './components/AirList';
 import AirForm from './components/AirForm';
+import {Icon} from 'native-base';
 import { StyleSheet,View } from 'react-native';
 import DeviceDetail from './components/DeviceDetail';
-import TimerScreen from './components/TimerScreen';
 
 
 const RouterComponent =() => {
@@ -21,10 +21,20 @@ const RouterComponent =() => {
                     <Scene key="login" component={LoginForm}  hideNavBar  />
                 </Scene>
                 <Scene key="deviceCreate" component={DeviceCreate} title="Add Device" hideNavBar  />
+<<<<<<< HEAD
                 <Scene key="deviceForm" component={DeviceForm} hideNavBar/>
                 <Scene key="timerScreen" component={TimerScreen} title="DeviceDetail" hideNavBar  />
                 <Scene key="deviceDetail" component={DeviceDetail} title="DeviceDetail" hideNavBar  />
                 <Scene key="tabbar" tabs tabBarPosition={'bottom'} iconName="alarm" tabStyle={styles.tabStyle} initial >
+=======
+                <Scene
+                    key="deviceForm"
+                    component={DeviceForm}
+                    hideNavBar
+                />
+                <Scene key="devicedetail" component={DeviceDetail} title="DeviceDetail" hideNavBar initial />
+                <Scene key="tabbar" tabs tabBarPosition={'bottom'} iconName="alarm" tabStyle={styles.tabStyle}  >
+>>>>>>> parent of 8da2c9c... Change Database
                     <Scene key="devices" title="Devices">
                         <Scene
                             key="deviceList"
@@ -32,6 +42,7 @@ const RouterComponent =() => {
                             title="Devices"
                             hideNavBar
                         >
+                            <Icon name={'arrow-back'}/>
                         </Scene>
 
                     </Scene>

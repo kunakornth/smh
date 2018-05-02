@@ -40,13 +40,6 @@ class DeviceForm extends Component{
                                 onChangeText={value => this.props.deviceUpdate({prop: 'name',value})}
                             />
                         </Item>
-                        <Item stackedLabel last>
-                            <Label>Id</Label>
-                            <Input
-                                value={this.props.Id}
-                                onChangeText={value => this.props.deviceUpdate({prop: 'sspassword',value})}
-                            />
-                        </Item>
                         <Item stackedLabel>
                             <Label>WiFi name</Label>
                             <Input

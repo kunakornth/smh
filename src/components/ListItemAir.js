@@ -29,12 +29,12 @@ class AirItems extends Component{
     }
 
     onButtonPress(){
-        const { airStatus,Id } = this.props.air;
+        const { airStatus,uid } = this.props.air;
         if (airStatus == 0){
-            firebase.database().ref('airId/'+Id) .update({airStatus:1,})
+            firebase.database().ref('airId/'+uid) .update({airStatus:1,})
         }
         else{
-            firebase.database().ref('airId/'+Id).update({airStatus:0,})
+            firebase.database().ref('airId/'+uid).update({airStatus:0,})
         }
 
     }
@@ -50,7 +50,7 @@ class AirItems extends Component{
                         <View style={{flex:1}}>
                             <Image
                                 style={{width:70,height:70}}
-                                source={require('../../public/asset/icon/icon-aircon.png')}
+                                source={require('../../public/asset/icon/smart-plug.png')}
                             />
                         </View>
                         <View style={{flex:3,justifyContent: 'center',marginLeft:15}}>

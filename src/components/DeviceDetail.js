@@ -1,17 +1,18 @@
 import React,{Component} from 'react';
 import {Content, Container, Text, Icon,Header,Left,Body,Right,Thumbnail,Form,Item,Label} from 'native-base';
-import {View,TouchableOpacity} from 'react-native';
+import {View,TouchableOpacity} from 'react-native'
 import {Actions} from "react-native-router-flux";
-import firebase from 'firebase';
 
 class DeviceDetail extends Component{
+<<<<<<< HEAD
 
     onRowPress(){
         Actions.timerScreen({device:this.props.device});
     }
 
+=======
+>>>>>>> parent of 8da2c9c... Change Database
     render(){
-        const { name} = this.props.device;
         return(
             <Container>
                <Header noShadow style={{backgroundColor: 'transparent',borderBottomColor:'transparent'}}>
@@ -23,6 +24,7 @@ class DeviceDetail extends Component{
                    <Body/>
                    <Right/>
                </Header>
+<<<<<<< HEAD
                 <View style={{flex:1 ,alignItems: 'center'}}>
                     <Thumbnail style={{margin:15}} large source= {require('../../public/asset/icon/smart-plug.png')}/>
                     <TouchableOpacity style={{margin:15}}>
@@ -50,6 +52,18 @@ class DeviceDetail extends Component{
                 </View>
                 <View style={{flex:0.1}}/>
 
+=======
+                <Content>
+                    <Form>
+                        <Item stackedLabel style={{backgroundColor:'red'}}>
+                            <Thumbnail large source= {require('../../public/asset/icon/smart-plug.png')}/>
+                        </Item>
+                        <Item stackedLabel>
+                            <Label>Device name</Label>
+                        </Item>
+                    </Form>
+                </Content>
+>>>>>>> parent of 8da2c9c... Change Database
             </Container>
         );
     }
