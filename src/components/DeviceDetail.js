@@ -6,11 +6,14 @@ import {Actions} from "react-native-router-flux";
 class DeviceDetail extends Component{
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     onRowPress(){
         Actions.timerScreen({device:this.props.device});
     }
 
+=======
+>>>>>>> parent of 8da2c9c... Change Database
 =======
 >>>>>>> parent of 8da2c9c... Change Database
 =======
@@ -27,6 +30,7 @@ class DeviceDetail extends Component{
                    <Body/>
                    <Right/>
                </Header>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
                 <View style={{flex:1 ,alignItems: 'center'}}>
@@ -59,6 +63,8 @@ class DeviceDetail extends Component{
 =======
 =======
 >>>>>>> parent of 8da2c9c... Change Database
+=======
+>>>>>>> parent of 8da2c9c... Change Database
                 <Content>
                     <Form>
                         <Item stackedLabel style={{backgroundColor:'red'}}>
@@ -70,6 +76,9 @@ class DeviceDetail extends Component{
                     </Form>
                 </Content>
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of 8da2c9c... Change Database
+=======
 >>>>>>> parent of 8da2c9c... Change Database
 =======
 >>>>>>> parent of 8da2c9c... Change Database
