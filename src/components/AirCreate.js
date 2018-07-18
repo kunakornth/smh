@@ -7,20 +7,20 @@ import { Actions } from 'react-native-router-flux'
 
 class AirCreate extends Component{
     onButtonPress(){
-        const { name, airStatus, ssid, sspassword } = this.props;
-        this.props.airCreate({ name, airStatus, ssid, sspassword });
+        const { name, airStatus, ssid, sspassword,deviceType,Id,temp } = this.props;
+        this.props.airCreate({ name, airStatus, ssid, sspassword,deviceType,Id,temp });
     }
     render(){
         return(
             <Container>
-                <Header>
+                <Header noShadow style={{backgroundColor: 'white',borderBottomColor:'transparent'}}>
                     <Left>
                         <TouchableOpacity onPress={() => Actions.pop()}>
-                            <Icon style={{fontSize: 35, color: 'white'}} name='arrow-back' />
+                            <Icon style={{ color: '#057ce4'}} name='arrow-back' />
                         </TouchableOpacity>
                     </Left>
                     <Body>
-                    <Title>Add Air-Conditioner</Title>
+                    <Title style={{ color: '#057ce4'}}>Air-Conditioner</Title>
                     </Body>
                     <Right/>
                 </Header>
@@ -31,6 +31,13 @@ class AirCreate extends Component{
                             <Input
                                 value={this.props.name}
                                 onChangeText={value => this.props.airUpdate({prop: 'name',value})}
+                            />
+                        </Item>
+                        <Item stackedLabel>
+                            <Label>Serial Key</Label>
+                            <Input
+                                value={this.props.Id}
+                                onChangeText={value => this.props.airUpdate({prop: 'Id',value})}
                             />
                         </Item>
                         <Item stackedLabel>
@@ -49,7 +56,7 @@ class AirCreate extends Component{
                             />
                         </Item>
                         <Button full light style={{marginTop:20}} onPress={this.onButtonPress.bind(this)} >
-                            <Text>Next</Text>
+                            <Text style={{ color: '#057ce4'}}>Next</Text>
                         </Button>
                     </Form>
                 </Content>
@@ -59,8 +66,8 @@ class AirCreate extends Component{
 }
 
 const mapStateToProps = (state) => {
-    const { name, airStatus, ssid, sspassword } = state.airForm;
-    return { name, airStatus, ssid, sspassword };
+    const { name, airStatus, ssid, sspassword,deviceType,Id,temp } = state.airForm;
+    return { name, airStatus, ssid, sspassword,deviceType,Id,temp };
 };
 
 export default connect(mapStateToProps,{ airUpdate,airCreate })(AirCreate);

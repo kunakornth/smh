@@ -2,9 +2,11 @@ import firebase from 'firebase';
 import {
     DEVICE_UPDATE,
     DEVICE_CREATE,
-    DEVICES_FETCH_SUCCESS
+    DEVICES_FETCH_SUCCESS,
+    DEVICE_DELETE
 } from './types'
 import {Actions} from 'react-native-router-flux'
+import {Linking} from "react-native";
 
 
 export const deviceUpdate =({ prop, value })=>{
@@ -14,14 +16,17 @@ export const deviceUpdate =({ prop, value })=>{
     };
 };
 
-export const deviceCreate =( {name, dimmer, ssid, sspassword ,Id} )=>{
+export const deviceCreate =( {name, dimmer, ssid, sspassword ,deviceType,Id} )=>{
 
     return(dispatch)=> {
-        firebase.database().ref('deviceId/'+Id)
-            .set({name,dimmer,ssid, sspassword,Id})
+        const { currentUser } = firebase.auth();
+        fetch(`http://192.168.4.1/ssid?a=${ssid}&b=${sspassword}&c=${currentUser.uid}`)
+        firebase.database().ref(`/users/${currentUser.uid}/devices/`+Id)
+            .set({name,dimmer,ssid, sspassword,deviceType,Id})
             .then(() => {
                 dispatch({ type: DEVICE_CREATE});
-                Actions.pop({type: 'reset'});
+                Actions.tabbar();
+
             });
     };
 };
@@ -29,9 +34,11 @@ export const deviceCreate =( {name, dimmer, ssid, sspassword ,Id} )=>{
 export const devicesFetch = () => {
 
     return (dispatch) => {
-        firebase.database().ref('deviceId')
+        const { currentUser } = firebase.auth();
+        firebase.database().ref(`/users/${currentUser.uid}/devices/`)
             .on('value', snapshot => {
                 dispatch({ type: DEVICES_FETCH_SUCCESS,payload: snapshot.val()});
             });
     };
 };
+

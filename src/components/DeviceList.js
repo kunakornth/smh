@@ -1,11 +1,12 @@
 import _ from 'lodash';
 import React,{ Component } from 'react';
-import { Container, Content, Header, Body, Title, Right, Left, Icon } from 'native-base';
-import { TouchableOpacity,ListView,YellowBox } from 'react-native';
+import { Container, Content, Header, Body, Title, Right, Left, Icon,ListItem,Text } from 'native-base';
+import { TouchableOpacity,ListView,YellowBox,Linking,WebView,Modal,View   } from 'react-native';
 import { connect } from 'react-redux';
 import {devicesFetch} from "../actions";
 import { Actions } from 'react-native-router-flux';
 import ListItems from './ListItems';
+import firebase from 'firebase';
 
 YellowBox.ignoreWarnings(['Setting a timer']);
 const _console = _.clone(console);
@@ -16,7 +17,14 @@ console.warn = message => {
 };
 
 
+
 class DeviceList extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            active: 'true'
+        };
+    }
     componentWillMount(){
         this.props.devicesFetch();
         this.createDataSource(this.props);
@@ -42,31 +50,43 @@ class DeviceList extends Component {
         return <ListItems device={device} />;
     }
 
+
+
     render(){
         console.log(this.props);
         return(
             <Container>
-                <Header>
-                    <Left/>
-                    <Body>
-                        <Title>
-                            Devices
-                        </Title>
+                    <Header noShadow style={{backgroundColor: 'white',borderBottomColor:'transparent'}}>
+                        <Left>
+                            <TouchableOpacity onPress={() =>{
+                                Actions.profile();
+                            }
+                            }>
+                                <Icon style={{ color: '#057ce4'}} type="FontAwesome"  name='user-circle-o' />
+                            </TouchableOpacity>
+                        </Left>
+                        <Body>
+                            <Title style={{color:'#057ce4'}}>
+                                Devices
+                            </Title>
 
-                    </Body>
-                    <Right>
-                        <TouchableOpacity onPress={() => Actions.deviceCreate()}>
-                            <Icon style={{fontSize: 35, color: 'white'}} name='md-add' />
-                        </TouchableOpacity>
-                    </Right>
-                </Header>
-                <Content>
-                    <ListView
-                        enableEmptySections
-                        dataSource={this.dataSource}
-                        renderRow={this.renderRow}
-                    />
-                </Content>
+                        </Body>
+                        <Right>
+
+                            <TouchableOpacity onPress={() => Actions.deviceSelect() }>
+                                <Icon style={{fontSize: 35, color: '#057ce4'}} name='md-add' />
+                            </TouchableOpacity>
+                        </Right>
+                    </Header>
+                    <Content>
+
+                        <ListView
+                            enableEmptySections
+                            dataSource={this.dataSource}
+                            renderRow={this.renderRow}
+                        />
+
+                    </Content>
             </Container>
         )
     }

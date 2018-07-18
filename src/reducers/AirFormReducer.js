@@ -8,6 +8,9 @@ const INITIAL_STATE = {
     ssid: '',
     sspassword:'',
     airStatus:0,
+    deviceType:'Air Conditioner',
+    Id:'',
+    temp:'25'
 
 };
 

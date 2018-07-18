@@ -2,32 +2,77 @@ import React,{Component} from 'react';
 import { connect} from 'react-redux';
 import { deviceUpdate, deviceCreate } from "../actions";
 import { Container, Content, Form, Item, Label, Text, Header, Left, Body, Title, Right, Icon, Input, Button } from 'native-base';
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity,Modal,View,WebView } from 'react-native';
 import { Actions } from 'react-native-router-flux'
 
 class DeviceCreate extends Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+            isOpen:false
+        };
+    }
+    _onNavigationStateChange (webViewState) {
+        this.show();
+        setTimeout(() => {this.hide()}, 3000)
+        this.onButtonPress2();
+    }
+    show () {
+        this.setState({ modalVisible: true })
+    }
+
+    hide () {
+        this.setState({ modalVisible: false })
+    }
+    onButtonPress2(){
+        const { name, dimmer, ssid, sspassword,deviceType,Id } = this.props;
+        this.props.deviceCreate({ name, dimmer, ssid, sspassword,deviceType,Id });
+
+    }
+    onButton(){
+        this.setState({ isOpen: true })
+    }
     onButtonPress(){
-        const { name, dimmer, ssid, sspassword,Id } = this.props;
-        this.props.deviceCreate({ name, dimmer, ssid, sspassword,Id });
+        if(this.state.isOpen== true){
+            return(
+                <Modal
+                    animationType={'slide'}
+                    visible={this.state.modalVisible}
+                    onRequestClose={this.hide.bind(this)}
+                    transparent
+                >
+
+                    <WebView
+                        style={[{ flex: 1 },]}
+                        source={{ uri: `http://google.com` }}
+                        scalesPageToFit
+                        startInLoadingState
+                        onNavigationStateChange={this._onNavigationStateChange.bind(this)}
+                    />
+                </Modal >
+            )
+        }
+
 
     }
     render(){
         return(
             <Container>
-                <Header>
+                <Header noShadow style={{backgroundColor: 'white',borderBottomColor:'transparent'}}>
                     <Left>
                         <TouchableOpacity onPress={() => Actions.pop()}>
-                            <Icon style={{fontSize: 35, color: 'white'}} name='arrow-back' />
+                            <Icon style={{ color: '#057ce4'}} name='arrow-back' />
                         </TouchableOpacity>
                     </Left>
                     <Body>
-                        <Title>Add Devices</Title>
+                        <Title style={{ color: '#057ce4'}}>Devices</Title>
                     </Body>
                     <Right/>
                 </Header>
                 <Content>
                     <Form>
                         <Item stackedLabel>
+
                             <Label>Device name</Label>
                             <Input
                                 value={this.props.name}
@@ -35,12 +80,14 @@ class DeviceCreate extends Component{
                             />
                         </Item>
                         <Item stackedLabel>
-                            <Label>ID</Label>
+
+                            <Label>Serial Key</Label>
                             <Input
                                 value={this.props.Id}
                                 onChangeText={value => this.props.deviceUpdate({prop: 'Id',value})}
                             />
                         </Item>
+
                         <Item stackedLabel>
                             <Label>WiFi name</Label>
                             <Input
@@ -56,9 +103,11 @@ class DeviceCreate extends Component{
                                 onChangeText={value => this.props.deviceUpdate({prop: 'sspassword',value})}
                             />
                         </Item>
-                        <Button full light style={{marginTop:20}} onPress={this.onButtonPress.bind(this)} >
-                            <Text>Next</Text>
+
+                        <Button full light style={{marginTop:20}} onPress={this.onButtonPress2.bind(this)} >
+                            <Text style={{ color: '#057ce4'}}>Next</Text>
                         </Button>
+                        {this.onButtonPress()}
                     </Form>
                 </Content>
             </Container>
@@ -67,8 +116,8 @@ class DeviceCreate extends Component{
 }
 
 const mapStateToProps = (state) => {
-  const { name, dimmer, ssid, sspassword,Id } = state.deviceForm;
-  return { name, dimmer, ssid, sspassword,Id };
+  const { name, dimmer, ssid, sspassword,deviceType,Id } = state.deviceForm;
+  return { name, dimmer, ssid, sspassword,deviceType,Id };
 };
 
 export default connect(mapStateToProps,{ deviceUpdate,deviceCreate })(DeviceCreate);

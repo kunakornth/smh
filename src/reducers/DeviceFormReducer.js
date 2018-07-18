@@ -9,6 +9,8 @@ const INITIAL_STATE = {
     sspassword:'',
     dimmer:0,
     Id:'',
+    airStatus:'',
+    deviceType:'Smart Plug'
 
 };
 
